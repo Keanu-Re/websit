@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Websit — 个人网站",
-    template: "%s | Websit",
+    default: "艾鸣之助 — 个人网站",
+    template: "%s | 艾鸣之助",
   },
   description: "一个简约的个人网站，记录想法、展示作品。",
 };

@@ -25,9 +25,9 @@ export default function Header() {
           className="text-lg font-semibold tracking-tight hover:opacity-70 transition-opacity flex items-center gap-2"
         >
           <span className="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-foreground text-background text-xs font-bold">
-            W
+            艾
           </span>
-          <span className="hidden sm:inline">Websit</span>
+          <span className="hidden sm:inline">艾鸣之助</span>
         </Link>
 
         {/* Desktop nav */}

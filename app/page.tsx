@@ -10,7 +10,7 @@ export default function Home() {
           {/* Avatar */}
           <div className="relative">
             <div className="w-28 h-28 rounded-full bg-gradient-to-br from-accent to-accent-light flex items-center justify-center text-white text-3xl font-light shadow-lg animate-float">
-              W
+              艾
             </div>
             <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-400 rounded-full border-2 border-background" />
           </div>
@@ -18,7 +18,7 @@ export default function Home() {
           <div className="space-y-4">
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
               你好，我是{" "}
-              <span className="gradient-text">Websit</span>
+              <span className="gradient-text">艾鸣之助</span>
             </h1>
             <p className="text-muted text-lg md:text-xl max-w-lg mx-auto leading-relaxed">
               一个热爱创造的人。写代码、写文字、做设计，偶尔也拍拍照。
