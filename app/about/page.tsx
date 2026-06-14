@@ -23,15 +23,16 @@ const skillCategories = [
     items: [
       "RVIZ · Gazebo 仿真与可视化工具",
       "Ubuntu 下 C++ / Python 的 ROS 开发",
+      "远程调试工具 · 动态参数配置与数据回放",
     ],
   },
   {
     icon: Wrench,
     title: "工程能力",
     items: [
-      "Git & Shell 脚本 · 自动化构建",
-      "嵌入式单片机 & 嵌入式 Linux 开发",
-      "嵌入式平台快速部署算法",
+      "PX4 飞控 · gazeboROS 仿真系统搭建",
+      "RK3399 嵌入式平台算法部署 (10Hz 实时)",
+      "嵌入式单片机 & Linux · Git & Shell 自动化构建",
     ],
   },
   {
@@ -43,6 +44,39 @@ const skillCategories = [
     ],
   },
 ];
+
+const projects = [
+  {
+    year: "2024.5 — 2025.11",
+    title: "室内巡检无人机算法开发",
+    tags: ["PX4", "FAST-LIO", "EGO-Planner", "RK3399"],
+    highlights: [
+      "基于 PX4 + gazeboROS 构建巡检仿真系统，完成仿真验证及后期数据回放分析",
+      "基于 FAST-LIO 框架进行模块化代码重构，在 RK3399 平台实现稳定的 10Hz 定位与环境地图输出",
+      "集成 EGO-Planner 进行轨迹规划，结合 SLAM 实现动态障碍物感知，打通「感知—规划—控制」全流程",
+      "主导闭环检测与回环优化模块，显著减少长时间运行的累积误差，提升地图一致性，完善整个 SLAM 系统",
+    ],
+  },
+  {
+    year: "2023.5 — 2024.5",
+    title: "扫地机器人 SLAM 算法开发",
+    tags: ["双目视觉里程计", "多传感器融合", "ROS"],
+    highlights: [
+      "基于双目相机实现视觉里程计，对比传统 SGM 半全局匹配方案，深度估计精度更高；融合三维修正深度拟合二维激光雷达数据，实现高效三维环境感知",
+      "针对扫地机器人场景，构建更完善的环境地图与定位系统，融合视觉+激光特征解决弱纹理区域定位难题，成功率提升至 95%",
+      "设计激光避障环检测与处理策略，确保机器人在失效场景下仍能保持稳定定位性能",
+      "基于 ROS 框架独立开发远程调试终端工具，实现运行参数动态配置与数据包回放功能",
+    ],
+  },
+];
+
+function CheckIcon() {
+  return (
+    <svg className="w-4 h-4 shrink-0 text-accent mt-0.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="3,8 6.5,11.5 13,4.5" />
+    </svg>
+  );
+}
 
 export default function AboutPage() {
   return (
@@ -96,6 +130,61 @@ export default function AboutPage() {
                   </li>
                 ))}
               </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Project Experience */}
+      <section>
+        <div className="flex items-center gap-2 mb-8">
+          <Sparkles size={18} className="text-accent" />
+          <h2 className="text-xl font-semibold">项目经历</h2>
+        </div>
+
+        <div className="relative pl-8 space-y-10">
+          {/* Timeline line */}
+          <div className="absolute left-[7px] top-2 bottom-2 w-px bg-gradient-to-b from-accent/40 via-border to-transparent" />
+
+          {projects.map((project, i) => (
+            <div
+              key={project.year}
+              className="relative animate-fade-in-up"
+              style={{ animationDelay: `${i * 0.15}s` }}
+            >
+              {/* Dot */}
+              <div className="absolute -left-8 top-1.5 w-[15px] h-[15px] flex items-center justify-center">
+                <div className={`w-3 h-3 rounded-full border-2 border-accent ${i === 0 ? "bg-accent" : "bg-background"}`} />
+              </div>
+
+              <div className="glass-card p-6 rounded-xl">
+                {/* Header */}
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-1">
+                  <div>
+                    <p className="text-xs text-accent font-medium">{project.year}</p>
+                    <h3 className="font-semibold text-base mt-0.5">{project.title}</h3>
+                  </div>
+                </div>
+
+                {/* Tags */}
+                <div className="flex flex-wrap gap-1.5 mb-4">
+                  {project.tags.map((tag) => (
+                    <span key={tag} className="tag-pill !text-xs !py-0.5">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Highlights */}
+                <ul className="space-y-2.5">
+                  {project.highlights.map((highlight) => (
+                    <li key={highlight} className="flex items-start gap-2 text-sm text-muted leading-relaxed">
+                      <CheckIcon />
+                      {highlight}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           ))}
         </div>
