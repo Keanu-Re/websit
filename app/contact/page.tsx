@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 type IconComponent = LucideIcon | ComponentType<{ size?: number } & SVGProps<SVGSVGElement>>;
 
-const contacts: { icon: IconComponent; label: string; value: string; href: string | null }[] = [
+const contacts: { icon: IconComponent; label: string; value: string; href: string | null; color?: string }[] = [
   {
     icon: Mail,
     label: "邮箱",
@@ -41,16 +41,18 @@ const contacts: { icon: IconComponent; label: string; value: string; href: strin
 export default function ContactPage() {
   return (
     <div className="max-w-4xl mx-auto px-6 py-16 animate-fade-in-up">
-      <h1 className="text-3xl font-bold tracking-tight mb-2">联系我</h1>
-      <p className="text-muted mb-10">随时欢迎交流</p>
+      <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-2">联系我</h1>
+      <p className="text-muted mb-12">随时欢迎交流</p>
 
-      <div className="grid gap-4 sm:grid-cols-2 max-w-2xl">
+      <div className="grid gap-4 sm:grid-cols-2 max-w-2xl stagger-children">
         {contacts.map((contact) => {
           const Icon = contact.icon;
           const content = (
-            <div className="p-5 rounded-xl border border-border bg-card hover:bg-card-hover transition-colors">
-              <div className="flex items-center gap-3">
-                <Icon size={20} className="text-muted" />
+            <div className="glass-card p-6 rounded-2xl group">
+              <div className="flex items-center gap-4">
+                <div className="icon-box">
+                  <Icon size={18} />
+                </div>
                 <div>
                   <p className="text-xs text-muted mb-0.5">{contact.label}</p>
                   <p className="text-sm font-medium">{contact.value}</p>
@@ -66,6 +68,7 @@ export default function ContactPage() {
                 href={contact.href}
                 target={contact.href.startsWith("http") ? "_blank" : undefined}
                 rel={contact.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                className="block"
               >
                 {content}
               </a>

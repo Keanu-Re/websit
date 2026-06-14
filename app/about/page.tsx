@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Sparkles } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "关于",
@@ -39,12 +40,12 @@ const timeline = [
 export default function AboutPage() {
   return (
     <div className="max-w-4xl mx-auto px-6 py-16 animate-fade-in-up">
-      <h1 className="text-3xl font-bold tracking-tight mb-2">关于我</h1>
-      <p className="text-muted mb-10">了解更多关于我</p>
+      <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-2">关于我</h1>
+      <p className="text-muted mb-12">了解更多关于我</p>
 
       {/* Bio */}
-      <section className="mb-12">
-        <p className="text-muted leading-relaxed max-w-2xl">
+      <section className="mb-14">
+        <p className="text-muted leading-relaxed max-w-2xl text-lg">
           你好！我是一个热爱技术的开发者，喜欢用代码解决有趣的问题。
           工作之余，我喜欢阅读、摄影和探索新技术。
           我相信好的设计和简洁的代码可以让世界变得更好一点。
@@ -52,13 +53,16 @@ export default function AboutPage() {
       </section>
 
       {/* Skills */}
-      <section className="mb-12">
-        <h2 className="text-xl font-semibold mb-4">技能</h2>
-        <div className="flex flex-wrap gap-2">
+      <section className="mb-14">
+        <div className="flex items-center gap-2 mb-5">
+          <Sparkles size={18} className="text-accent" />
+          <h2 className="text-xl font-semibold">技能</h2>
+        </div>
+        <div className="flex flex-wrap gap-2 stagger-children">
           {skills.map((skill) => (
             <span
               key={skill}
-              className="text-sm px-3 py-1 rounded-full border border-border text-muted hover:text-foreground hover:border-foreground/20 transition-colors"
+              className="tag-pill !text-sm !px-3.5 !py-1.5"
             >
               {skill}
             </span>
@@ -68,14 +72,23 @@ export default function AboutPage() {
 
       {/* Timeline */}
       <section>
-        <h2 className="text-xl font-semibold mb-6">经历</h2>
-        <div className="relative pl-6 border-l-2 border-border space-y-8">
-          {timeline.map((item) => (
-            <div key={item.year} className="relative">
-              <div className="absolute -left-[25px] top-1.5 w-3 h-3 rounded-full bg-border" />
-              <p className="text-xs text-muted mb-1">{item.year}</p>
-              <h3 className="font-semibold mb-1">{item.title}</h3>
-              <p className="text-sm text-muted">{item.description}</p>
+        <h2 className="text-xl font-semibold mb-8">经历</h2>
+        <div className="relative pl-8 space-y-10">
+          {/* Timeline line */}
+          <div className="absolute left-[7px] top-2 bottom-2 w-px bg-gradient-to-b from-accent/40 via-border to-transparent" />
+
+          {timeline.map((item, i) => (
+            <div key={item.year} className="relative animate-fade-in-up" style={{ animationDelay: `${i * 0.1}s` }}>
+              {/* Dot */}
+              <div className="absolute -left-8 top-1.5 w-[15px] h-[15px] flex items-center justify-center">
+                <div className={`w-3 h-3 rounded-full border-2 border-accent ${i === 0 ? "bg-accent" : "bg-background"}`} />
+              </div>
+
+              <div className="glass-card p-5 rounded-xl">
+                <p className="text-xs text-accent font-medium mb-1.5">{item.year}</p>
+                <h3 className="font-semibold mb-1">{item.title}</h3>
+                <p className="text-sm text-muted leading-relaxed">{item.description}</p>
+              </div>
             </div>
           ))}
         </div>

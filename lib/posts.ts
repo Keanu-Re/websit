@@ -12,6 +12,7 @@ export interface PostMeta {
   date: string;
   excerpt: string;
   tags: string[];
+  readingTime: string;
 }
 
 export interface Post extends PostMeta {
@@ -25,6 +26,7 @@ interface RawPostData {
   excerpt: string;
   tags: string[];
   rawContent: string;
+  readingTime: string;
 }
 
 export function getAllPostSlugs(): string[] {
@@ -33,6 +35,13 @@ export function getAllPostSlugs(): string[] {
     .readdirSync(postsDirectory)
     .filter((file) => file.endsWith(".md"))
     .map((file) => file.replace(/\.md$/, ""));
+}
+
+function calculateReadingTime(text: string): string {
+  // 中文约 400 字/分钟，英文约 200 词/分钟，取混合平均值
+  const charCount = text.length;
+  const minutes = Math.max(1, Math.ceil(charCount / 400));
+  return `${minutes} 分钟`;
 }
 
 function parseRawPost(slug: string): RawPostData | null {
@@ -49,6 +58,7 @@ function parseRawPost(slug: string): RawPostData | null {
     excerpt: data.excerpt ?? "",
     tags: data.tags ?? [],
     rawContent: content,
+    readingTime: calculateReadingTime(content),
   };
 }
 
@@ -64,6 +74,7 @@ export async function getPostWithHtml(slug: string): Promise<Post | null> {
     date: raw.date,
     excerpt: raw.excerpt,
     tags: raw.tags,
+    readingTime: raw.readingTime,
     contentHtml: processed.toString(),
   };
 }
@@ -80,6 +91,7 @@ export function getAllPosts(): PostMeta[] {
         date: raw.date,
         excerpt: raw.excerpt,
         tags: raw.tags,
+        readingTime: raw.readingTime,
       };
     })
     .filter((p): p is PostMeta => p !== null)

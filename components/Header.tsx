@@ -18,33 +18,45 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-md bg-[var(--background)]/80 border-b border-border">
-      <nav className="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between">
-        <Link href="/" className="text-lg font-semibold tracking-tight hover:opacity-70 transition-opacity">
-          Websit
+    <header className="sticky top-0 z-50 backdrop-blur-xl bg-[var(--background)]/70 border-b border-border/50">
+      <nav className="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
+        <Link
+          href="/"
+          className="text-lg font-semibold tracking-tight hover:opacity-70 transition-opacity flex items-center gap-2"
+        >
+          <span className="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-foreground text-background text-xs font-bold">
+            W
+          </span>
+          <span className="hidden sm:inline">Websit</span>
         </Link>
 
         {/* Desktop nav */}
-        <ul className="hidden md:flex items-center gap-6 text-sm">
-          {navItems.map((item) => (
-            <li key={item.href}>
-              <Link
-                href={item.href}
-                className={`transition-colors hover:text-accent ${
-                  pathname === item.href
-                    ? "text-foreground font-medium"
-                    : "text-muted"
-                }`}
-              >
-                {item.label}
-              </Link>
-            </li>
-          ))}
+        <ul className="hidden md:flex items-center gap-1 text-sm">
+          {navItems.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className={`relative px-3 py-1.5 rounded-full transition-all duration-200 ${
+                    isActive
+                      ? "text-foreground font-medium bg-accent-bg"
+                      : "text-muted hover:text-foreground hover:bg-card-hover"
+                  }`}
+                >
+                  {item.label}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-accent" />
+                  )}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
 
         {/* Mobile toggle */}
         <button
-          className="md:hidden p-1 text-muted hover:text-foreground transition-colors"
+          className="md:hidden p-2 text-muted hover:text-foreground transition-colors rounded-lg hover:bg-card-hover"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
@@ -54,23 +66,26 @@ export default function Header() {
 
       {/* Mobile nav */}
       {mobileOpen && (
-        <div className="md:hidden border-t border-border bg-[var(--background)]/95 backdrop-blur-md">
-          <ul className="max-w-4xl mx-auto px-6 py-4 flex flex-col gap-3 text-sm">
-            {navItems.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  onClick={() => setMobileOpen(false)}
-                  className={`block py-1 transition-colors hover:text-accent ${
-                    pathname === item.href
-                      ? "text-foreground font-medium"
-                      : "text-muted"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
+        <div className="md:hidden border-t border-border/50 bg-[var(--background)]/95 backdrop-blur-xl animate-slide-down">
+          <ul className="max-w-4xl mx-auto px-6 py-4 flex flex-col gap-1 text-sm">
+            {navItems.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    onClick={() => setMobileOpen(false)}
+                    className={`block px-3 py-2.5 rounded-xl transition-all duration-200 ${
+                      isActive
+                        ? "text-foreground font-medium bg-accent-bg"
+                        : "text-muted hover:text-foreground hover:bg-card-hover"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </div>
       )}

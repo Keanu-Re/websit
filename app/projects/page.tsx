@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Layers } from "lucide-react";
 import ProjectCard from "@/components/ProjectCard";
 import type { ProjectData } from "@/components/ProjectCard";
 
@@ -33,15 +34,43 @@ const projects: ProjectData[] = [
 ];
 
 export default function ProjectsPage() {
+  // 收集所有技术栈标签
+  const allTechTags = Array.from(new Set(projects.flatMap((p) => p.tags)));
+
   return (
     <div className="max-w-4xl mx-auto px-6 py-16 animate-fade-in-up">
-      <h1 className="text-3xl font-bold tracking-tight mb-2">作品集</h1>
-      <p className="text-muted mb-10">做过的一些项目</p>
+      <div className="flex items-start justify-between mb-2">
+        <h1 className="text-3xl md:text-4xl font-bold tracking-tight">作品集</h1>
+        <span className="text-xs text-muted mt-2">{projects.length} 个项目</span>
+      </div>
+      <p className="text-muted mb-8">做过的一些项目</p>
 
-      <div className="grid gap-4 sm:grid-cols-2">
+      {/* Tech tags */}
+      <div className="flex flex-wrap gap-2 mb-10">
+        {allTechTags.map((tag) => (
+          <span key={tag} className="tag-pill">
+            {tag}
+          </span>
+        ))}
+      </div>
+
+      <div className="grid gap-5 sm:grid-cols-2 stagger-children">
         {projects.map((project) => (
           <ProjectCard key={project.title} project={project} />
         ))}
+      </div>
+
+      {/* Bottom CTA */}
+      <div className="mt-12 text-center">
+        <a
+          href="https://github.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 text-sm text-muted hover:text-accent transition-colors"
+        >
+          <Layers size={16} />
+          在 GitHub 上查看更多
+        </a>
       </div>
     </div>
   );
