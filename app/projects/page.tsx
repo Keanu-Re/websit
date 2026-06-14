@@ -10,31 +10,25 @@ export const metadata: Metadata = {
 
 const projects: ProjectData[] = [
   {
-    title: "项目一",
+    title: "室内巡检无人机 SLAM 系统",
     description:
-      "一个基于 Next.js 的全栈 Web 应用，实现了用户认证、数据管理和实时通知功能。",
-    tags: ["Next.js", "TypeScript", "PostgreSQL"],
-    github: "https://github.com",
-    demo: "https://example.com",
+      "基于 FAST-LIO 的定位建图系统，集成 EGO-Planner 轨迹规划，在嵌入式平台实现实时感知—规划—控制闭环。",
+    tags: ["FAST-LIO", "EGO-Planner", "PX4", "RK3399", "ROS"],
   },
   {
-    title: "项目二",
+    title: "扫地机器人视觉 SLAM",
     description:
-      "一个开源的 CLI 工具，用于自动化常见的开发工作流，提升团队效率。",
-    tags: ["Node.js", "CLI", "开源"],
-    github: "https://github.com",
+      "双目视觉里程计 + 多传感器融合定位，解决弱纹理场景定位难题，开发远程调试工具链。",
+    tags: ["双目视觉", "多传感器融合", "ROS", "C++"],
   },
   {
-    title: "项目三",
-    description:
-      "一个移动端优先的响应式设计系统，包含 30+ 可复用组件。",
-    tags: ["React", "Tailwind CSS", "设计系统"],
-    demo: "https://example.com",
+    title: "更多项目",
+    description: "持续探索中，敬请期待。",
+    tags: ["Coming Soon"],
   },
 ];
 
 export default function ProjectsPage() {
-  // 收集所有技术栈标签
   const allTechTags = Array.from(new Set(projects.flatMap((p) => p.tags)));
 
   return (
@@ -63,7 +57,7 @@ export default function ProjectsPage() {
       {/* Bottom CTA */}
       <div className="mt-12 text-center">
         <a
-          href="https://github.com"
+          href="https://github.com/Keanu-Re"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 text-sm text-muted hover:text-accent transition-colors"

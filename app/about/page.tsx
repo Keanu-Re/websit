@@ -10,36 +10,36 @@ export const metadata: Metadata = {
 const skillCategories = [
   {
     icon: Cpu,
-    title: "SLAM 算法开发",
+    title: "SLAM 算法",
     items: [
-      "激光雷达 · 视觉相机 · IMU · 轮速计 · RTK",
+      "激光雷达 · 视觉 · IMU · 多传感器融合",
       "VINS · ORB-SLAM · Cartographer · FAST-LIO",
-      "G2O · Ceres 非线性优化与图优化",
+      "G2O · Ceres 图优化与非线性优化",
     ],
   },
   {
     icon: Bot,
     title: "ROS 开发",
     items: [
-      "RVIZ · Gazebo 仿真与可视化工具",
-      "Ubuntu 下 C++ / Python 的 ROS 开发",
-      "远程调试工具 · 动态参数配置与数据回放",
+      "RVIZ · Gazebo 仿真与可视化",
+      "C++ / Python ROS 工程开发",
+      "远程调试与数据回放工具链",
     ],
   },
   {
     icon: Wrench,
     title: "工程能力",
     items: [
-      "PX4 飞控 · gazeboROS 仿真系统搭建",
-      "RK3399 嵌入式平台算法部署 (10Hz 实时)",
-      "嵌入式单片机 & Linux · Git & Shell 自动化构建",
+      "PX4 飞控 · 仿真系统搭建",
+      "嵌入式平台算法部署与优化",
+      "单片机 & Linux · Git & Shell",
     ],
   },
   {
     icon: BookOpen,
     title: "语言与学术",
     items: [
-      "英语六级 · 流畅阅读前沿算法论文",
+      "英语六级 · 阅读前沿算法论文",
       "C++ · Python · Linux Shell",
     ],
   },
@@ -47,25 +47,25 @@ const skillCategories = [
 
 const projects = [
   {
-    year: "2024.5 — 2025.11",
+    year: "2024 — 2025",
     title: "室内巡检无人机算法开发",
     tags: ["PX4", "FAST-LIO", "EGO-Planner", "RK3399"],
     highlights: [
-      "基于 PX4 + gazeboROS 构建巡检仿真系统，完成仿真验证及后期数据回放分析",
-      "基于 FAST-LIO 框架进行模块化代码重构，在 RK3399 平台实现稳定的 10Hz 定位与环境地图输出",
-      "集成 EGO-Planner 进行轨迹规划，结合 SLAM 实现动态障碍物感知，打通「感知—规划—控制」全流程",
-      "主导闭环检测与回环优化模块，显著减少长时间运行的累积误差，提升地图一致性，完善整个 SLAM 系统",
+      "搭建仿真系统，完成仿真验证与数据回放分析",
+      "模块化重构 FAST-LIO，在嵌入式平台实现 10Hz 稳定定位",
+      "集成 EGO-Planner，打通感知—规划—控制全流程",
+      "主导闭环检测与回环优化，显著减少累积误差",
     ],
   },
   {
-    year: "2023.5 — 2024.5",
+    year: "2023 — 2024",
     title: "扫地机器人 SLAM 算法开发",
-    tags: ["双目视觉里程计", "多传感器融合", "ROS"],
+    tags: ["视觉里程计", "多传感器融合", "ROS"],
     highlights: [
-      "基于双目相机实现视觉里程计，对比传统 SGM 半全局匹配方案，深度估计精度更高；融合三维修正深度拟合二维激光雷达数据，实现高效三维环境感知",
-      "针对扫地机器人场景，构建更完善的环境地图与定位系统，融合视觉+激光特征解决弱纹理区域定位难题，成功率提升至 95%",
-      "设计激光避障环检测与处理策略，确保机器人在失效场景下仍能保持稳定定位性能",
-      "基于 ROS 框架独立开发远程调试终端工具，实现运行参数动态配置与数据包回放功能",
+      "双目视觉里程计，融合激光数据实现三维环境感知",
+      "视觉+激光融合定位，解决弱纹理场景定位难题",
+      "设计避障环检测策略，保障失效场景稳定性",
+      "独立开发远程调试工具，支持动态参数配置与数据回放",
     ],
   },
 ];
@@ -158,13 +158,8 @@ export default function AboutPage() {
               </div>
 
               <div className="glass-card p-6 rounded-xl">
-                {/* Header */}
-                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-1">
-                  <div>
-                    <p className="text-xs text-accent font-medium">{project.year}</p>
-                    <h3 className="font-semibold text-base mt-0.5">{project.title}</h3>
-                  </div>
-                </div>
+                <p className="text-xs text-accent font-medium">{project.year}</p>
+                <h3 className="font-semibold text-base mt-0.5 mb-2">{project.title}</h3>
 
                 {/* Tags */}
                 <div className="flex flex-wrap gap-1.5 mb-4">
@@ -176,7 +171,7 @@ export default function AboutPage() {
                 </div>
 
                 {/* Highlights */}
-                <ul className="space-y-2.5">
+                <ul className="space-y-2">
                   {project.highlights.map((highlight) => (
                     <li key={highlight} className="flex items-start gap-2 text-sm text-muted leading-relaxed">
                       <CheckIcon />
