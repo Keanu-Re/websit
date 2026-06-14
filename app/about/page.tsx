@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Sparkles } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -44,12 +45,24 @@ export default function AboutPage() {
       <p className="text-muted mb-12">了解更多关于我</p>
 
       {/* Bio */}
-      <section className="mb-14">
-        <p className="text-muted leading-relaxed max-w-2xl text-lg">
-          你好！我是一个热爱技术的开发者，喜欢用代码解决有趣的问题。
-          工作之余，我喜欢阅读、摄影和探索新技术。
-          我相信好的设计和简洁的代码可以让世界变得更好一点。
-        </p>
+      <section className="mb-14 flex flex-col sm:flex-row items-start gap-8">
+        <div className="w-24 h-24 rounded-full overflow-hidden shadow-md ring-2 ring-border flex-shrink-0">
+          <Image
+            src="https://avatars.githubusercontent.com/u/57993552?v=4"
+            alt="艾鸣之助"
+            width={96}
+            height={96}
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div>
+          <h2 className="text-2xl font-bold mb-3">艾鸣之助</h2>
+          <p className="text-muted leading-relaxed text-lg">
+            你好！我是一个热爱技术的开发者，喜欢用代码解决有趣的问题。
+            工作之余，我喜欢阅读、摄影和探索新技术。
+            我相信好的设计和简洁的代码可以让世界变得更好一点。
+          </p>
+        </div>
       </section>
 
       {/* Skills */}

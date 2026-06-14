@@ -1,4 +1,5 @@
 import { ArrowRight, FileText, Layers, User } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
@@ -9,8 +10,15 @@ export default function Home() {
         <div className="flex flex-col items-center text-center gap-8">
           {/* Avatar */}
           <div className="relative">
-            <div className="w-28 h-28 rounded-full bg-gradient-to-br from-accent to-accent-light flex items-center justify-center text-white text-3xl font-light shadow-lg animate-float">
-              艾
+            <div className="w-28 h-28 rounded-full overflow-hidden shadow-lg animate-float ring-2 ring-border">
+              <Image
+                src="https://avatars.githubusercontent.com/u/57993552?v=4"
+                alt="艾鸣之助"
+                width={112}
+                height={112}
+                className="w-full h-full object-cover"
+                priority
+              />
             </div>
             <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-400 rounded-full border-2 border-background" />
           </div>
