@@ -29,7 +29,7 @@ export default function Home() {
               <span className="gradient-text">艾鸣之助</span>
             </h1>
             <p className="text-muted text-lg md:text-xl max-w-lg mx-auto leading-relaxed">
-              一个热爱创造的人。写代码、写文字、做设计，偶尔也拍拍照。
+              专注于 SLAM 算法与机器人系统开发。让机器"看见"世界，用代码构建智能。
             </p>
           </div>
 
